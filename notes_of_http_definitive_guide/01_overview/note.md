@@ -87,16 +87,55 @@ HTTP 使用 TCP 传送数据， 而TCP用的是IP
 5. Physical network hard6.   
 
 ###Connections, IP Addresses, and Port Numbers
+建立TCP连接有点像给公司办公室打电话，要有主机号码，然后是分机号。  
+对应的在TCP里需要一个`IP地址`和一个`TCP端口号`  
+看起来顺其自然不是吗，但号码和分机号从哪来的？ 当然是URL了。    
+
+URL | description  
+----|-----
+`http://192.168.1.4/index.html` | 这个是裸露的URL地址, 端口默认80
+`http://allsunday.eicp.net/index.html` | 给对数字无力的人，可以用hostname 
+hostname（主机名）可以通过DNS 服务器进行转换，变成那串扰人的URL地址。  
+
+
 ###A Real Example Using Telnet
+telnet是一个远程终端，键盘化作TCP端口，显示器化作TCP输出   
+telnet一般用来远程会议，但也可以连到TCP服务器  
+所以还是netcat更好啦。
 ##Protocol Version
+协议版本 | 描述
+------|-------
+HTTP/0.9 | MIME，HTTP header, versions number..都不支持，很快就被1.0代替了
+HTTP/1.0 | 第一个广泛使用的版本
+HTTP/1.0+ | 迅速的扩张对协议提出了新的需求，加入了：keep alive,virtual hosting support,proxy..
+HTTP/1.1 | 修补了结构上的瑕疵，支持了更多应用协议，是`当前版本`
+HTTP-NG(a.k.a. HTTP/2.0) | next generation 啦
 ##Architectural Components of the Web
+components | description  
+---|---
+proxies | 中间人，邮递员，媒婆，代理人，摄政王 误） 
+caches | 在靠近client的地方放个仓库， 全家自提点
+gateways | 连接到其他应用的特殊web服务~
+tunnels | 暗地里的HTTP通讯
+Agents | 可以自动处理HTTP请求的小聪明的web client (??)
 ###Proxies
+位处client 和 server 之间，行代理人之责，在client看来就像是server般的存在  
+一般用作保密， 可过滤request 和 response, 如删除病毒和成人内容（oh,no）等
 ###Caches
+另一种proxy， 他会把常用的文件存起来，下一次对文件的请求就直接丢给你了啦  
+其实里面还是蛮复杂的，要如何高效缓存，多久刷新数据，是否是隐私信息等等。  
 ###Gateways
+又来了个中间人.. 不过这位比较多事，不老老实实做传话的，他负责转换协议，比如吧HTTP请求转成FTP之类的。 当然这些事情client是不知道的啦
+
 ###Tunnels
+保密线路就是了，摸黑地在两个线路之间中继信息. 一般用来：用HTTP传输非HTTP数据，并且不暴露数据（？）
+最常见的就是跑SSL- Secure Sockets Layer，允许SSL走防火墙里原本只允许web走的线路。  
+HTTP/SSL 要先通过HTTTP建立一个连接（address, port）, 然后就能通信了。
 ###Agents
+client 侧的应用， 根据用户的行为生成HTTP request. 目前我们只讨论browser这一种agent， 当然还存在许多user agent， 像spider啦。
 ##For More Informationh
 ###HTTP Protocol Information
-####Http Pocket Reference
+原书20-21页ß
+HTTP Pocket Reference  
 ####[w3.org/protocols](http://www.w3org/Protocols/)
 
