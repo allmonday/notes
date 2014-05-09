@@ -135,7 +135,7 @@ HTTP/SSL 要先通过HTTTP建立一个连接（address, port）, 然后就能通
 client 侧的应用， 根据用户的行为生成HTTP request. 目前我们只讨论browser这一种agent， 当然还存在许多user agent， 像spider啦。
 ##For More Informationh
 ###HTTP Protocol Information
-原书20-21页ß
+原书20-21页  
 HTTP Pocket Reference  
 ####[w3.org/protocols](http://www.w3org/Protocols/)
 
