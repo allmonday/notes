@@ -69,7 +69,7 @@ server那里不会管这些，送过来就好了，定位这事都是交给clien
 ####Base URLs
 要相对跳转就得有基地址，它来自三个地方：  
 
-* <BASE> HTML tag  
+* HTML tag  
 * URL 的地址
 * 绝对地址
 
@@ -77,11 +77,53 @@ server那里不会管这些，送过来就好了，定位这事都是交给clien
 ####Resolving relative references
 page 33
 ###Expandomatic URLs
+可以少打个www，浏览器自己会补全。  
+还有就是历史记录补全。  
 ##Shady Characters
+URL禁止那些不可见，不可打印的字符。  
+转义机制通过把字符用常用字符表示的方式进行传输。  
 ###The URL Character Set
+现在用的是ascii， 以后通过escape sequences 支持二进制表示。  
 ###Encoding Mechanisms
+
+character | ascii | example
+----|-----|-----
+~ | 0x7E | com/%7Ejoe
+SPACE | 0x20  | com/more%20tools.html
+% | 0x25 | com/100%25satisfaction.html
+
 ###Character Restrictions
+保留字  
+
+character | reservation / restriction
+-----|-----
+`%` | token for encoded characters
+`/`	| path segments
+`.`	| path component
+`..`	| path component
+`#`		| fragment delimiter
+`?`		| query-string delimiter
+`;`	|params delimiter
+`:`	|scheme, user/password, host/port components
+`$,+`	|reserved
+`@&=`	|special meainings
+`{}|\^~[]'` | unsafe handling by various transport agents, such as gateway
+`<>"`	| often have meaning outside the scope of URL
+`0x00-0x17, 0x7f`	| nonprintable section
+`>0x7f`	| out of ascii
+
 ###A Bit More
 ###A Sea of Schemes
+* http
+* https
+* mailto
+* ftp
+* **rtsp,rtspu**
+* file
+* news
+* telnet 
+
+
+
 ##The Future
 ##For more info
